@@ -1,15 +1,36 @@
-# Rails Devise JWT Auth for API Only Mode (Template)
+# Fleet Booking API
 
+A Rails 7 API backend for a vehicle fleet service booking system. Built for a tech assessment demo with Devise JWT authentication and endpoints for driver bookings, car/service management, and admin review.
 
-## Usage
+## 🔧 Tech Stack
 
-To use this template,
+- Ruby on Rails 7 (API-only mode)
+- Devise + JWT (`devise-jwt`)
+- PostgreSQL
+- CORS-enabled for frontend integration (e.g., Angular)
+- ActionMailer (confirmation emails)
 
-1. Click the Use Template button to create a new repository
-2. Clone the new repository to your local machine
-3. Run `bundle install`
-4. Run `EDITOR="code --wait" rails credentials:edit`
-5. Do a global find and replace for `rails_devise_jwt_template` with `your_project_name`
-6. Run `rails db:create db:migrate`
-7. Run `rails s` to start your api server on port 4000
-8. Test out your [API using Postman](https://www.postman.com/orange-capsule-983544/workspace/rails-jwt)
+---
+
+## 📦 Features
+
+- User authentication (login/logout with JWT)
+- Driver booking form with:
+  - Car selection
+  - Service/department selection
+  - Date picker
+- Admin dashboard-ready endpoints (list + update bookings)
+- Booking confirmation email on submit
+
+---
+
+## 🚀 Getting Started
+
+### Clone & Setup
+
+```bash
+git clone https://github.com/yourusername/fleet_booking_api.git
+cd fleet_booking_api
+bundle install
+rails db:create db:migrate db:seed
+rails s
