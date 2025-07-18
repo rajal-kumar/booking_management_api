@@ -1,4 +1,4 @@
-# Fleet Booking API
+# Booking Management API
 
 A Rails 7 API backend for a vehicle fleet service booking system. Built for a tech assessment demo with Devise JWT authentication and endpoints for driver bookings, car/service management, and admin review.
 
@@ -29,8 +29,8 @@ A Rails 7 API backend for a vehicle fleet service booking system. Built for a te
 ### Clone & Setup
 
 ```bash
-git clone https://github.com/yourusername/fleet_booking_api.git
-cd fleet_booking_api
+git clone https://github.com/yourusername/booking_management_api.git
+cd booking_management_api
 bundle install
 rails db:create db:migrate db:seed
 rails s
