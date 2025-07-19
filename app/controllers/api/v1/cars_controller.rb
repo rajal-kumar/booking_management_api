@@ -1,5 +1,6 @@
 class Api::V1::CarsController < ApplicationController
   def index
-    render json: Car.all
+    cars = Car.all
+    render json: CarSerializer.new(cars).serializable_hash.to_json
   end
 end
