@@ -1,0 +1,13 @@
+Booking Confirmation
+
+Hi <%= @user.email %>,
+
+Your booking has been received for:
+
+- Car: <%= @booking.car.make %> <%= @booking.car.model %>
+- Service: <%= @booking.service.name %>
+- Date: <%= @booking.date %>
+- Status: <%= @booking.status %>
+
+Thanks,
+The Booking Team

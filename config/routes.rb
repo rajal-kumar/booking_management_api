@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :cars, only: [:index]
+      resources :services, only: [:index]
+      resources :bookings, only: [:index, :create]
+    end
+  end
   get 'current_user', to: 'current_user#index'
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

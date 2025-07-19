@@ -1,0 +1,14 @@
+<h1>Booking Confirmation</h1>
+<p>Hi <%= @user.email %>,</p>
+
+<p>Your booking has been received for:</p>
+
+<ul>
+  <li>Car: <%= @booking.car.make %> <%= @booking.car.model %></li>
+  <li>Service: <%= @booking.service.name %></li>
+  <li>Date: <%= @booking.date %></li>
+</ul>
+
+<p>Status: <%= @booking.status %></p>
+
+<p>Thanks,<br>The Booking Team</p>
