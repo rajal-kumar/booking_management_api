@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Car.create!([
+  { make: "Toyota", model: "Corolla", rego: "ABC123" },
+  { make: "Ford", model: "Ranger", rego: "XYZ789" }
+])
+
+Service.create!([
+  { name: "Maintenance" },
+  { name: "WOF" },
+  { name: "Detailing" }
+])
