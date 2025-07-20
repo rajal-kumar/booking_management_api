@@ -49,6 +49,8 @@ rails s
 bundle exec rspec
 ```
 
+---
+
 ## 🔐 Authentication
 
 All endpoints are protected with Devise + JWT.
@@ -59,6 +61,8 @@ All endpoints are protected with Devise + JWT.
 Authorization: Bearer <your-token>
 ```
 
+---
+
 ## 🌱 Seed Data
 
 Seeds are available in db/seeds.rb. It creates:
@@ -66,9 +70,13 @@ Seeds are available in db/seeds.rb. It creates:
 - 2 Cars (e.g., Toyota Corolla, Ford Ranger)
 - 3 Services (e.g., Maintenance, WOF, Detailing)
 
+---
+
 ## 📬 Mailer
 
 BookingMailer sends a confirmation email to the user when a booking is created.
+
+---
 
 ## 🔁 Pagination
 
@@ -80,6 +88,8 @@ GET /cars?page=1&per_page=10
 
 The response includes standard JSON:API meta and links pagination data.
 
+---
+
 ## 🧪 Test Coverage
 
 ### RSpec specs include:
@@ -90,3 +100,4 @@ The response includes standard JSON:API meta and links pagination data.
 - Pagination specs
 - Auth helpers
 
+---
