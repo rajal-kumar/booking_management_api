@@ -57,3 +57,5 @@ end
 
 
 gem "factory_bot_rails", "~> 6.5"
+
+gem "kaminari", "~> 1.2"
