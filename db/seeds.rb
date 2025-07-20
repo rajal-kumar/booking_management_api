@@ -6,13 +6,17 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+puts "Seeding Cars..."
 Car.create!([
   { make: "Toyota", model: "Corolla", rego: "ABC123" },
   { make: "Ford", model: "Ranger", rego: "XYZ789" }
 ])
 
+puts "Seeding Services..."
 Service.create!([
   { name: "Maintenance" },
   { name: "WOF" },
   { name: "Detailing" }
 ])
+
+puts "Seeds done!"
