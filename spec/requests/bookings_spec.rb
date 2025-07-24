@@ -1,16 +1,15 @@
 require "rails_helper"
 
 RSpec.describe "Bookings API", type: :request do
-  let(:user) { create(:user) }
-  let(:car)  { create(:car, user: user) }
+  let(:car)  { create(:car) }
   let(:service) { create(:service) }
 
   before do
-    15.times { create(:booking, user: user, car: car, service: service) }
+    15.times { create(:booking, car: car, service: service) }
   end
 
   it "returns paginated bookings" do
-    get "/api/v1/bookings?page=1&per_page=10", headers: auth_headers(user)
+    get "/api/v1/bookings?page=1&per_page=10"
     json = JSON.parse(response.body)
 
     expect(response).to have_http_status(:ok)
@@ -26,15 +25,16 @@ RSpec.describe "Bookings API", type: :request do
         date: Date.tomorrow,
         status: "pending"
       }
-    }.to_json, headers: auth_headers(user).merge("Content-Type" => "application/json")
+    }.to_json,
+      headers: { "CONTENT_TYPE" => "application/json", "ACCEPT" => "application/json" }
 
     expect(response).to have_http_status(:created)
   end
 
   it "gets bookings list" do
-    create(:booking, user: user, car: car, service: service)
+    create(:booking, car: car, service: service)
 
-    get "/api/v1/bookings", headers: auth_headers(user)
+    get "/api/v1/bookings"
 
     expect(response).to have_http_status(:ok)
   end
