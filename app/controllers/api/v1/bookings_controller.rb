@@ -2,7 +2,7 @@ class Api::V1::BookingsController < ApplicationController
   def index
     bookings = Booking.page(params[:page]).per(params[:per_page] || 10)
 
-    render json: BookingSerializer.new(bookings, pagination_links(bookings)).serializable_hash
+    render json: BookingSerializer.new(bookings, pagination_links(bookings).merge(include: [:car, :service])).serializable_hash
   end
 
   def create
@@ -19,6 +19,6 @@ class Api::V1::BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:car_id, :service_id, :date, :status)
+    params.require(:booking).permit(:car_id, :service_id, :date, :status, :user_id)
   end
 end
