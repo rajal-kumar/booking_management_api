@@ -1,46 +1,57 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts "🌱 Seeding database..."
 
-puts "Cleaning database..."
-Booking.destroy_all
-Car.destroy_all
-Service.destroy_all
-User.destroy_all
+# Avoid destructive operations in production
+if Rails.env.development? || Rails.env.test?
+  puts "Cleaning database..."
+  Booking.destroy_all
+  Car.destroy_all
+  Service.destroy_all
+  User.destroy_all
+end
 
 puts "Creating test user..."
-user = User.create!(
-  id: 1,
-  email: 'admin@example.com',
-  password: 'password',
-  password_confirmation: 'password'
-)
+
+user = User.find_by(id: 1)
+
+unless user
+  user = User.create!(
+    id: 1,
+    email: 'admin@example.com',
+    password: 'password',
+    password_confirmation: 'password'
+  )
+end
 
 puts "Creating cars..."
-cars = Car.create!([
-  { make: 'Toyota', model: 'Corolla', rego: 'ABC123', user_id: user.id },
-  { make: 'Honda', model: 'Civic', rego: 'DEF123', user_id: user.id },
-  { make: 'Mazda', model: '3', rego: 'GHI123', user_id: user.id },
-  { make: 'Nissan', model: 'Leaf', rego: 'JKL123', user_id: user.id },
-  { make: 'Hyundai', model: 'i30', rego: 'MNO123', user_id: user.id },
-  { make: 'Tesla', model: 'Model 3', rego: 'PQR123', user_id: user.id },
-  { make: 'Ford', model: 'Focus', rego: 'STU123', user_id: user.id }
-])
+cars_data = [
+  { make: 'Toyota', model: 'Corolla', rego: 'ABC123' },
+  { make: 'Honda', model: 'Civic', rego: 'DEF123' },
+  { make: 'Mazda', model: '3', rego: 'GHI123' },
+  { make: 'Nissan', model: 'Leaf', rego: 'JKL123' },
+  { make: 'Hyundai', model: 'i30', rego: 'MNO123' },
+  { make: 'Tesla', model: 'Model 3', rego: 'PQR123' },
+  { make: 'Ford', model: 'Focus', rego: 'STU123' }
+]
+
+cars = cars_data.map do |car_attrs|
+  Car.find_or_create_by!(rego: car_attrs[:rego]) do |car|
+    car.assign_attributes(car_attrs.merge(user_id: user.id))
+  end
+end
 
 puts "Creating services..."
-services = Service.create!([
-  { name: "WOF" },
-  { name: "Maintenance" }
-])
+service_names = ["WOF", "Maintenance"]
+services = service_names.map do |name|
+  Service.find_or_create_by!(name: name)
+end
 
 puts "Creating bookings..."
-Booking.create!([
-  { car: cars[0], service: services[0], date: Date.today + 1, status: "pending", user_id: user.id },
-  { car: cars[1], service: services[1], date: Date.today + 2, status: "confirmed", user_id: user.id }
-])
+Booking.find_or_create_by!(car: cars[0], service: services[0], date: Date.today + 1, user_id: user.id) do |b|
+  b.status = "pending"
+end
 
-puts "Seeding complete!"
+Booking.find_or_create_by!(car: cars[1], service: services[1], date: Date.today + 2, user_id: user.id) do |b|
+  b.status = "confirmed"
+end
+
+puts "✅ Seeding complete!"
