@@ -2,6 +2,10 @@
 
 A Rails 7 API backend for a vehicle fleet service booking system. Built for a tech assessment demo with Devise JWT authentication and endpoints for driver bookings, car/service management, and admin review. Includes pagination, serializers, seed data, and full RSpec test coverage.
 
+## 🚀 Live Demo
+
+- Backend: <https://booking-management-api.onrender.com>
+
 ## 🔧 Tech Stack
 
 - Ruby on Rails 7 (API-only mode)
@@ -17,7 +21,7 @@ A Rails 7 API backend for a vehicle fleet service booking system. Built for a te
 
 ## 📦 Features
 
-- Secure JWT-based user authentication
+<!-- - Secure JWT-based user authentication - WIP -->
 - Driver booking API with:
   - Car selection
   - Service/department selection
@@ -26,8 +30,18 @@ A Rails 7 API backend for a vehicle fleet service booking system. Built for a te
 - Confirmation email sent on booking submission
 - JSON:API response formatting
 - Pagination for all index endpoints
+- CORS enabled for frontend integration
 - Seed file with example cars and services
 - Full test coverage for models, controllers, mailer, and pagination
+
+---
+
+## 🔗 API Endpoints
+
+- `GET /api/v1/cars`
+- `GET /api/v1/services`
+- `GET /api/v1/bookings`
+- `POST /api/v1/bookings`
 
 ---
 
@@ -53,13 +67,15 @@ bundle exec rspec
 
 ## 🔐 Authentication
 
-All endpoints are protected with Devise + JWT.
+Authentication is scaffolded but not fully configured. Bookings table integration depends on final auth wiring.
 
-### Example Header:
+<!-- All endpoints are protected with Devise + JWT. - WIP -->
+
+<!-- ### Example Header
 
 ```bash
 Authorization: Bearer <your-token>
-```
+``` -->
 
 ---
 
@@ -92,7 +108,7 @@ The response includes standard JSON:API meta and links pagination data.
 
 ## 🧪 Test Coverage
 
-### RSpec specs include:
+### RSpec specs include
 
 - Models
 - Mailer (BookingMailer)
