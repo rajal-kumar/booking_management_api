@@ -20,5 +20,5 @@ Rails.application.routes.draw do
         }
     end
   end
-  root to: proc { [200, {}, ['Booking Management API']] }
+  root to: ->(_) { [200, { 'Content-Type' => 'text/plain' }, ['Booking Management API']] }
 end
