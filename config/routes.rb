@@ -20,4 +20,5 @@ Rails.application.routes.draw do
         }
     end
   end
+  root to: proc { [200, {}, ['Booking Management API']] }
 end
